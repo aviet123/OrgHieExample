@@ -4,6 +4,8 @@ package com.example.demo.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -17,5 +19,7 @@ public class Organization {
     private String leaderShip;
 
     @OneToMany
+    @NotNull
+    @NotEmpty
     private List<Team> teams;
 }

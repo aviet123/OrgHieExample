@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/teams")
 public class TeamController {
@@ -21,7 +23,7 @@ public class TeamController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Team> createTeam(@RequestBody Team team){
+    public ResponseEntity<Team> createTeam(@Valid @RequestBody Team team){
         Team teamCreated = teamService.save(team);
         return new ResponseEntity<Team>(teamCreated, HttpStatus.CREATED);
     }

@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/org")
 public class OrgController {
@@ -21,7 +23,7 @@ public class OrgController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Organization> createOrg(@RequestBody Organization organization){
+    public ResponseEntity<Organization> createOrg(@Valid @RequestBody Organization organization){
         Organization organizationCreated = orgService.save(organization);
         return new ResponseEntity<Organization>(organizationCreated, HttpStatus.CREATED);
     }

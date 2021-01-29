@@ -3,6 +3,8 @@ package com.example.demo.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -10,10 +12,15 @@ import java.util.List;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable = false)
     private Long id;
     private String name;
     private String address;
+
+    @ManyToOne
+    @NotNull
+    @NotEmpty
+    private Team team;
 
     @OneToMany
     private List<Role> roles;
