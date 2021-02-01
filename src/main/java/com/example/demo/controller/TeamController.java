@@ -23,7 +23,7 @@ public class TeamController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Team> createTeam(@Valid @RequestBody Team team){
+    public ResponseEntity<Team> createTeam(@RequestBody Team team){
         Team teamCreated = teamService.save(team);
         return new ResponseEntity<Team>(teamCreated, HttpStatus.CREATED);
     }

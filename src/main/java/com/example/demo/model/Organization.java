@@ -1,11 +1,10 @@
 package com.example.demo.model;
 
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -18,8 +17,7 @@ public class Organization {
     private String name;
     private String leaderShip;
 
-    @OneToMany
-    @NotNull
-    @NotEmpty
+    @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL)
+    @JsonBackReference
     private List<Team> teams;
 }

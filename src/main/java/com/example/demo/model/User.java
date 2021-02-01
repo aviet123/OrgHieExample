@@ -18,10 +18,9 @@ public class User {
     private String address;
 
     @ManyToOne
-    @NotNull
-    @NotEmpty
+    @JoinColumn(name = "team_id",nullable = false)
     private Team team;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Role> roles;
 }

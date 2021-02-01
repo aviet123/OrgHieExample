@@ -23,7 +23,7 @@ public class OrgController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Organization> createOrg(@Valid @RequestBody Organization organization){
+    public ResponseEntity<Organization> createOrg(@RequestBody Organization organization){
         Organization organizationCreated = orgService.save(organization);
         return new ResponseEntity<Organization>(organizationCreated, HttpStatus.CREATED);
     }

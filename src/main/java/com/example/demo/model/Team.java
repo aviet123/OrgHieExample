@@ -1,10 +1,9 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -17,12 +16,10 @@ public class Team {
     private String name;
 
     @ManyToOne
-    @NotEmpty
-    @NotNull
+    @JoinColumn(name = "organization_id",nullable = false)
+    @JsonManagedReference
     private Organization organization;
 
-    @OneToMany
-    @NotEmpty
-    @NotNull
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
     private List<User> users;
 }
